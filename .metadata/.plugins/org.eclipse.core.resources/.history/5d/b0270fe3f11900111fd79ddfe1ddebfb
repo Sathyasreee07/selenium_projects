@@ -1,0 +1,69 @@
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+
+public class Assesment8Task1 {
+
+	public static void main(String[] args) {
+		WebDriver driver=new FirefoxDriver();
+		driver.get("https://icehrmpro.gamonoid.com/login.php");
+		driver.manage().window().maximize();
+		
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+		
+		driver.findElement(By.xpath("//button[text()='Log in ']")).click();
+		
+		driver.findElement(By.id("username")).sendKeys("admin");
+		driver.findElement(By.id("password")).sendKeys("pass");
+		
+		driver.findElement(By.xpath("//button[text()='Log in ']")).click();
+		
+		System.out.println(driver.findElement(By.xpath("//div[@role='alert']")).getText());
+		driver.findElement(By.id("username")).sendKeys("admin");
+		driver.findElement(By.id("password")).sendKeys("admin");
+		driver.findElement(By.xpath("//button[text()='Log in ']")).click();
+		
+		if(driver.getCurrentUrl().contains("dashboard")) {
+			System.out.println("Login successfully DashBoard Page Verifed");
+		}
+		else {
+			System.out.println("DashBoard Not Page Verifed");
+		}
+		
+		driver.findElement(By.xpath("//span[.='Employees']")).click();
+		driver.findElement(By.cssSelector("[href='https://icehrmpro.gamonoid.com/?g=admin&n=employees&m=admin_Employees']")).click();
+		
+		driver.findElement(By.linkText("Skills")).click();
+		driver.findElement(By.xpath("//span[.=' Add New']")).click();
+		
+		
+		WebElement s = driver.findElement(By.id("rc_select_2"));
+		s.click();
+		s.sendKeys("Project");
+		
+		List<WebElement> alloption=driver.findElements(By.cssSelector("[class='ant-select-item-option-content']"));
+		
+		for(WebElement option:alloption) {
+			String skill=option.getText();
+			System.out.println(skill);
+			if(skill.contains(s.getText())) {
+				System.out.println("Verified status:pass");
+				option.click();
+			}
+		}
+		
+		
+		driver.findElement(By.cssSelector("[class='glyphicon glyphicon-user']")).click();
+		driver.findElement(By.partialLinkText("Sign out")).click();
+		
+		
+		
+	}
+
+}

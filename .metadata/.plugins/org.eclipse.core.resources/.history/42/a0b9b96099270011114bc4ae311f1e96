@@ -1,0 +1,5 @@
+package com.orangehrm.sleniumuiframework.object_repository;
+
+public class AddCandidatePage {
+
+}

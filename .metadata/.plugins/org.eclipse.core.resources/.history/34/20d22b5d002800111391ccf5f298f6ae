@@ -1,0 +1,132 @@
+package com.orangehrm.sleniumuiframework.object_repository;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class AddCandidatePage {
+	public AddCandidatePage(WebDriver driver) {
+		PageFactory.initElements(driver, this);
+	}
+	
+	
+	@FindBy(name = "firstName")
+	private WebElement firstName;
+
+	@FindBy(name = "middleName")
+	private WebElement middleName;
+
+	@FindBy(name = "lastName")
+	private WebElement LastName;
+	
+	@FindBy(css = "[class=''oxd-select-text-input]")
+	private WebElement vacancyTextField;
+	
+	
+	
+	@FindBy(xpath = "//label[.='Email']/../..//input")
+	private WebElement emailTextField;
+	
+	@FindBy(xpath = "//label[.='Contact Number']/../..//input")
+	private WebElement contactTextField;
+	
+	@FindBy(css = "[type='file']")
+	private WebElement resumeTextField;
+	
+	@FindBy(css = "[placeholder='yyyy-dd-mm']")
+	private WebElement dateTextField;
+	
+	
+	@FindBy(xpath = "//button[.=' Save ']")
+	private WebElement saveBtn;
+	
+	
+	
+	
+	public WebElement getVacancyTextField() {
+		return vacancyTextField;
+	}
+
+
+	public WebElement getFirstName() {
+		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		getFirstName().sendKeys(firstName);
+	}
+
+	public WebElement getMiddleName() {
+		return middleName;
+	}
+
+	public void setMiddleName(String middleName) {
+		getMiddleName().sendKeys(middleName);
+	}
+
+	public WebElement getLastName() {
+		return LastName;
+	}
+
+	public void setLastName(String lastName) {
+		getLastName().sendKeys(lastName);
+	}
+
+
+	public WebElement getEmailTextField() {
+		return emailTextField;
+	}
+
+
+	public void setEmailTextField(String emailTextField) {
+		getEmailTextField().sendKeys(emailTextField);
+	}
+
+
+	public WebElement getContactTextField() {
+		return contactTextField;
+	}
+
+
+	public void setContactTextField(String contactTextField) {
+		getContactTextField().sendKeys(contactTextField);
+	}
+
+
+	public WebElement getResumeTextField() {
+		return resumeTextField;
+	}
+
+
+	public void setResumeTextField(String resumeTextField) {
+		getResumeTextField().sendKeys(resumeTextField);
+	}
+
+
+	public WebElement getSaveBtn() {
+		return saveBtn;
+	}
+	
+
+
+	public WebElement getDateTextField() {
+		return dateTextField;
+	}
+
+
+	public void setDateTextField(WebElement dateTextField) {
+		this.dateTextField = dateTextField;
+	}
+
+
+	public void clickSaveBtn() {
+		getSaveBtn().click();
+	}
+	
+	
+	
+
+
+}

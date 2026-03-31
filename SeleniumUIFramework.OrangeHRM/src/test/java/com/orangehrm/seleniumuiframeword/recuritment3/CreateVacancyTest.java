@@ -1,0 +1,94 @@
+package com.orangehrm.seleniumuiframeword.recuritment3;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+import com.orangehrm.sleniumuiframework.generic_utility.ActionsHelper;
+import com.orangehrm.sleniumuiframework.generic_utility.BaseClass;
+import com.orangehrm.sleniumuiframework.generic_utility.ExcelUtility;
+import com.orangehrm.sleniumuiframework.object_repository.AddVacancyPage;
+import com.orangehrm.sleniumuiframework.object_repository.DashboardPage;
+import com.orangehrm.sleniumuiframework.object_repository.RecruimentPage;
+import com.orangehrm.sleniumuiframework.object_repository.VacanciesPage;
+
+public class CreateVacancyTest extends BaseClass {
+
+    @Test
+    public void addVacancy() throws Exception {
+
+    	ExcelUtility eUtil = new ExcelUtility();
+        ActionsHelper aHelper = new ActionsHelper(driver);
+
+        //  Page Objects
+        DashboardPage dbp = new DashboardPage(driver);
+        RecruimentPage rp = new RecruimentPage(driver);
+        VacanciesPage vp = new VacanciesPage(driver);
+        AddVacancyPage addvp = new AddVacancyPage(driver);
+
+        // dashboard
+        dbp.clcikRecruitment();
+
+        // Requirement page
+        rp.clickVancanciesLink();
+
+        // click add
+        vp.clickAddBtn();
+        
+        String path = "./src/test/resources/OrangeHRM_TestScriptData/OrangeHRM_Recurtment_Vacancy_TestData/vacancies.xlsx";
+
+        eUtil.loadExcelFile(path, "addVacancy");
+        
+        String vacancyName = eUtil.getDataFromSingleCell(1, 1);
+        String description = eUtil.getDataFromSingleCell(1, 2);
+        String hiringManager = eUtil.getDataFromSingleCell(1, 3);
+        String positions = eUtil.getDataFromSingleCell(1, 4);
+
+        addvp.setVacancyNameTextField(vacancyName);
+
+        aHelper.navigateDownDropdown(addvp.getJobTitle(), 1);
+
+        addvp.setDescriptionTextField(description);
+
+        aHelper.scrollDownAutoSuggestion(
+                addvp.getHiringManagerTextField(),
+                hiringManager,
+                5,
+                1
+        );
+
+        addvp.setNumberOfPositionTextField(positions);
+
+        addvp.clickSaveBtn();
+        
+        
+        
+        List<WebElement>  validateionVacancyName=driver.findElements(By.xpath("//div[@class=\"oxd-table-row oxd-table-row--with-border\"]"));
+        
+        
+        for(WebElement vacancy: validateionVacancyName) {
+        	String name=vacancy.getText();
+        	Assert.assertEquals(name,eUtil.getDataFromSingleCell(1, 1));
+        	if(name.equals(eUtil.getDataFromSingleCell(1, 1))) {
+        		Reporter.log("passed");
+        	}else {
+        		Reporter.log("failed");
+        	}
+        	
+        	
+        }
+       
+    }
+    
+}
+

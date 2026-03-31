@@ -1,0 +1,83 @@
+package com.orangehrm.sleniumuiframework.object_repository;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+public class DashboardPage {
+	WebDriver driver;
+	public DashboardPage(WebDriver driver) {
+		PageFactory.initElements(driver, this);
+	}
+
+	@FindBy(linkText="PIM")
+	private WebElement pimLink;
+	
+	@FindBy(linkText="Recruitment")
+	private WebElement recruitment;
+	
+	@FindBy(linkText="My Info")
+	private WebElement myInfo;
+	
+	@FindBy(linkText="Buzz")
+	private WebElement buzz;
+	
+	public WebElement getBuzz() {
+		return buzz;
+	}
+	@FindBy(linkText="Admin")
+	private WebElement admin;
+
+
+	public void clickBuzz() {
+		getBuzz().click();
+	}
+
+	@FindBy(css="li[class='oxd-userdropdown']")
+	private WebElement logoutDropDown;
+
+	public WebElement getPimLink() {
+		return pimLink;
+	}
+
+	
+	public void clickPimLink() {
+		getPimLink().click();
+	}
+	public WebElement getRecruitment() {
+		return recruitment;
+	}
+
+	public void clcikRecruitment() {
+		getRecruitment().click();
+	}
+
+	public WebElement getMyInfo() {
+		return myInfo;
+	}
+
+
+	public void clickMyInfo() {
+		getMyInfo().click();
+	}
+
+
+	public WebElement getLogoutDropDown() {
+		return logoutDropDown;
+	}
+
+	public void clickLogoutDropDown() {
+		getLogoutDropDown().click();
+	}
+	public WebElement getAdmin() {
+		return admin;
+	}
+
+	public void clickAdmin() {
+		getAdmin().click();
+	}
+	
+
+}

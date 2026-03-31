@@ -1,0 +1,68 @@
+package com.orangehrm.seleniumuiframework.pim;
+
+import java.io.IOException;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.Assert;
+import org.testng.annotations.Test;
+
+import com.orangehrm.sleniumuiframework.generic_utility.BaseClass;
+import com.orangehrm.sleniumuiframework.generic_utility.ExcelUtility;
+import com.orangehrm.sleniumuiframework.object_repository.DashboardPage;
+import com.orangehrm.sleniumuiframework.object_repository.PIMPage;
+
+
+
+
+
+public class PimTest extends BaseClass{
+
+	@Test
+	public void PIMtermination() throws InterruptedException, IOException {
+		DashboardPage dp=new DashboardPage(driver);
+		PIMPage pp=new PIMPage(driver);
+		
+		ExcelUtility eu=new ExcelUtility();
+		
+		
+		dp.clickPimLink();
+		pp.clickConfiguration();
+		
+		pp.clickDropdown();
+		pp.clickAddbutn();
+		
+		String path="./src/test/resources/OrangeHRM_TestScriptData/OrangeHRM_Recurtment_Vacancy_TestData/pim.xlsx";
+		eu.loadExcelFile(path,"PIM");
+		pp.setNametxt(eu.getDataFromSingleCell(2,0));
+		
+//		pp.setNametxt("Laidd");
+
+	
+		pp.clickSave();
+
+		Thread.sleep(2000); 
+
+		String expected = eu.getDataFromSingleCell(2,0);
+
+		List<WebElement> records = driver.findElements(By.xpath("//div[@role='row']//div[2]"));
+
+		boolean found = false;
+
+		for(WebElement ele : records) {
+		    String text = ele.getText().trim();
+		    System.out.println("UI Value: " + text);
+
+		    if(text.equalsIgnoreCase(expected.trim())) {
+		        found = true;
+		        break;
+		    }
+		}
+
+		Assert.assertTrue(found);
+		
+	}
+
+}
+

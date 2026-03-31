@@ -1,0 +1,12 @@
+1773632566118	Rename type 'assEmployeeTestnew'
+1773719729254	Rename package 'com.orangehrm.sleniumuiframework.recruitment3'
+1773719755215	Rename package 'com.orangehrm.sleniumuiframework.login'
+1773721076668	Delete element
+1773721399123	Delete element
+1773733210905	Rename resource 'configuration.properties'
+1773733317285	Move file
+1773733331399	Move 'OrangeHRM_CommonData' to 'OrangeHRM_CommonData'
+1773802755720	Move 'OrangeHRM_Recurtment_Vacancy_TestData' to 'OrangeHRM_TestScriptData'
+1773818492274	Move 'LoginPage.properties' to 'ObjectRepository'
+1773818597044	Rename resource 'ObjectRepository'
+1773820385200	Rename resource 'LoginPAge.json'

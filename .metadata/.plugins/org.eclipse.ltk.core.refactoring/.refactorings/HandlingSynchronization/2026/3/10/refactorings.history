@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Move element &apos;java_wait.java&apos; to &apos;HandlingSynchronization/src/test/java/java_wait&apos;&#x0D;&#x0A;- Original project: &apos;HandlingSynchronization&apos;&#x0D;&#x0A;- Destination element: &apos;HandlingSynchronization/src/test/java/java_wait&apos;&#x0D;&#x0A;- Original element: &apos;handling_synchronization.java_wait.java&apos;&#x0D;&#x0A;- Update references to refactored element" description="Move compilation unit" destination="/src\/test\/java=/optional=/true=/=/maven.pomderived=/true=/=/test=/true=/&lt;java_wait" element1="/src\/test\/java=/optional=/true=/=/maven.pomderived=/true=/=/test=/true=/&lt;handling_synchronization{java_wait.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.move" patterns="*" policy="org.eclipse.jdt.ui.moveResources" qualified="false" references="true" stamp="1772772776449" units="1" version="1.0"/>
+</session>

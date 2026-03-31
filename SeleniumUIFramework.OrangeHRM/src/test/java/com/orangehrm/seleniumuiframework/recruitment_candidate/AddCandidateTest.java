@@ -1,0 +1,109 @@
+package com.orangehrm.seleniumuiframework.recruitment_candidate;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.testng.Reporter;
+import org.testng.annotations.Test;
+
+import com.orangehrm.sleniumuiframework.generic_utility.ActionsHelper;
+import com.orangehrm.sleniumuiframework.generic_utility.BaseClass;
+import com.orangehrm.sleniumuiframework.generic_utility.ExcelUtility;
+import com.orangehrm.sleniumuiframework.object_repository.AddCandidatePage;
+import com.orangehrm.sleniumuiframework.object_repository.DashboardPage;
+import com.orangehrm.sleniumuiframework.object_repository.RecruimentPage;
+
+public class AddCandidateTest extends BaseClass {
+	DashboardPage dbp = new DashboardPage(driver);
+    RecruimentPage rp = new RecruimentPage(driver);
+    AddCandidatePage acp=new AddCandidatePage(driver);
+    ExcelUtility eUtil = new ExcelUtility();
+    ActionsHelper aHelper = new ActionsHelper(driver);
+	
+	@Test
+	public void addCadidateTest() {
+		
+//		driver.findElement(By.xpath("//span[.='Recruitment']")).click();
+		
+		DashboardPage dbp = new DashboardPage(driver);
+        RecruimentPage rp = new RecruimentPage(driver);
+        AddCandidatePage acp=new AddCandidatePage(driver);
+        ExcelUtility eUtil = new ExcelUtility();
+        ActionsHelper aHelper = new ActionsHelper(driver);
+        
+		dbp.clcikRecruitment();		
+		rp.clickAddCandidateBtn();
+		acp.setFirstName("sathya");
+		acp.setMiddleName("sree");
+		acp.setLastName("r");
+		
+		aHelper.navigateDownDropdown(acp.getVacancyTextField(),5,2);
+
+		acp.setEmailTextField("sathya@gmail.com");
+		acp.setContactTextField("7890987655");
+		acp.setResumeTextField("C:\\Users\\sathy\\OneDrive\\Desktop\\CERTIFICATE\\old resume.pdf");
+		
+
+		
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].value='2026-04-11'", acp.getDateTextField());
+
+
+		acp.clickSaveBtn();
+
+	}
+
+	@Test(priority = 2, dependsOnMethods = "logInTest")
+	public void verifyCandidate() {
+		
+		
+		Actions action = new Actions(driver);
+		//job title
+//		WebElement jobTitleDropDown = driver.findElement(By.xpath("//label[text()='Job Title']/../..//div[@class='oxd-select-wrapper']"));
+//		action.click(jobTitleDropDown).pause(4000).sendKeys(Keys.ARROW_DOWN, Keys.ENTER).perform();
+//		
+//		
+//		//hiring Manager
+//		WebElement hiringManagerDropDown = driver.findElement(By.xpath("//label[text()='Hiring Manager']/../..//div[@class='oxd-select-wrapper']"));
+//		action.click(hiringManagerDropDown).pause(4000).sendKeys(Keys.ARROW_DOWN, Keys.ENTER).perform();
+//
+//		// vacancy
+//		WebElement vacancy = driver.findElement(By.xpath("//label[text()='Vacancy']/../..//div[@class='oxd-select-wrapper']"));
+//		action.click(vacancy).pause(4000).sendKeys(Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ARROW_DOWN, Keys.ENTER).perform();
+//		
+//		//status
+//		WebElement statusDropDown = driver.findElement(By.xpath("//label[text()='Status']/../..//div[@class='oxd-select-wrapper']"));
+//		action.click(statusDropDown).pause(4000).sendKeys(Keys.ARROW_DOWN, Keys.ENTER).perform();
+
+		// empName
+		WebElement empName = driver.findElement(By.xpath("//input[@placeholder='Type for hints...']"));
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("arguments[0].value='satya sree R'", empName);
+		// Date
+		WebElement date = driver.findElement(By.xpath("//label[.='Date of Application']/../..//input"));
+		JavascriptExecutor js1 = (JavascriptExecutor) driver;
+		js1.executeScript("arguments[0].value='2026-04-11'", date);
+
+		// search
+		driver.findElement(By.cssSelector("[class='oxd-button oxd-button--medium oxd-button--secondary orangehrm-left-space']")).click();
+
+
+		WebElement record = driver.findElement(By.xpath("//div[@class='orangehrm-horizontal-padding orangehrm-vertical-padding']//span"));
+
+		if (record.getText().contains("Record Found")) {
+			Reporter.log("Record Found", true);
+		} else {
+			Reporter.log("Record Not Found", true);
+		}
+
+	}
+	// @Test(priority=3, dependsOnMethods="logInTest")
+//	public void logOutTest() {
+//		driver.findElement(By.cssSelector(".oxd-userdropdown-tab")).click();
+//		driver.findElement(By.linkText("Logout")).click();
+//	}
+//	
+
+}

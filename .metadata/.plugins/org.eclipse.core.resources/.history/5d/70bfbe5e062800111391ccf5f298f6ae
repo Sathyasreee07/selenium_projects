@@ -1,0 +1,5 @@
+package com.orangehrm.seleniumuiframework.pim;
+
+public class PimTest {
+
+}

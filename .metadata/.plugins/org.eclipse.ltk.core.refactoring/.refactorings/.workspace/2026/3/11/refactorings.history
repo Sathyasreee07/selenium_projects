@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;SeleniumTesting&apos; to &apos;SeleniumTestNG&apos;" description="Rename resource &apos;SeleniumTesting&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="/SeleniumTesting" name="SeleniumTestNG" stamp="1773200224701" updateReferences="true"/>
+</session>
